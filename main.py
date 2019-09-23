@@ -7,5 +7,3 @@ class Character:
         print("This is the constructor method")
 
     # def diceRolling(attributes):
-
-    

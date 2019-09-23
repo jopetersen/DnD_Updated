@@ -1,0 +1,7 @@
+my_dict = {"test":1}
+
+my_dict[0] += 1
+
+
+
+6:21 PM
