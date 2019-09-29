@@ -1,4 +1,4 @@
-ef race_stat_builder (race_list, num_stats):
+def race_stat_builder (race_list, num_stats):
 
     #defines which race you will be
     race_value = input("Which race would you like to play as?" ).lower()

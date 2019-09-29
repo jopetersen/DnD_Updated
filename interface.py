@@ -1,22 +1,43 @@
+import tkinter as tk
 import random
+import pickle
 
-#creating a new player character
-class player_character:
+class Character:
+    # initialize the empty character
+    def __init__(self, name, race, strength, dexterity, wisdom, intelligence, constitution, charisma, weapons, items, spells):
+        self.name = name
+        self.race = race
+        self.strength = strength
+        self.dexterity = dexterity
+        self.wisdom = wisdom
+        self.intelligence = intelligence
+        self.constitution = constitution
+        self.charisma = charisma
+        self.weapons = weapons
+        self.items = items
+        self.spells = spells
+
+def character_creator():
+    # Create a new character a-la-charactermancer
+    print ("Test")
+
+    # define a name
+    name = input ("What is your character's name? ")
+
+    #define which race a character is
     available_races = ("dwarf", "dragonborn", "elf", "gnome", "half-elf", "halfling", "half-orc", "human", "tiefling")
-
-    # The constructor method is used to initialize data.
-    #It is run as soon as an object of a class is instantiated.
-    # create a stat block for the characters
-        #defines which race you will be
     race_value = input("Which race would you like to play as? " ).lower()
+
+    #checking if a race is valid
     while (race_value not in available_races):
         print ("invalid race, please choose again!")
         race_value = input("Which race would you like to play as? " ).lower()
     print ("Your race is a " + race_value)
 
+
     stat_block = []
     num_stats = 6
- #defines the base stat block
+     # rolling a 6 sided die 6 times to get the potential stat values
     while num_stats > 0:
         list_test = []
         for x in range(4):
@@ -27,13 +48,12 @@ class player_character:
         num_stats -= 1
 
     # expecting this to print out a list with 6 values
-    # stats(6)
     # define a list of names for stats
     stat_names = ["strength", "dexterity", "wisdom", "charisma", "constitution", "intelligence"]
 
     stat_dictionary = {}
     print (stat_block)
-
+    #stat assigning
     for index, name in enumerate(stat_names, start = 0):
         print ("Which value do you want to use for ", stat_names[index], "?")
         assigned_stat_value = int(input())
@@ -43,7 +63,7 @@ class player_character:
             print (stat_dictionary)
         else:
             print ("Not a valid number")
-    #modifying the stats based on race
+    #modify the stats based on race
     if (race_value == "dragonborn"):
         stat_dictionary["strength"] += 2
         stat_dictionary["charisma"] += 1
@@ -79,7 +99,30 @@ class player_character:
         stat_dictionary["intelligence"] += 1
         stat_dictionary["charisma"] += 2
 
-        # sets are like lists but can only have unique values
-    name = input ("What is your character's name? ")
-        # sets are like lists but can only have unique values
-ilde = player_character()
+    #print ("Making it here - race")
+    weapons = []
+    items = []
+    spells = []
+
+    char_1= Character(name, race_value, stat_dictionary["strength"], stat_dictionary["dexterity"], stat_dictionary["wisdom"], stat_dictionary["intelligence"], stat_dictionary["constitution"],stat_dictionary["charisma"], weapons, items, spells)
+
+    print ("character created!")
+    return char_1
+    exit()
+
+
+root = tk.Tk()
+frame = tk.Frame(root)
+frame.pack()
+
+button = tk.Button(frame,
+                   text="QUIT",
+                   fg="red",
+                   command=quit)
+button.pack(side=tk.LEFT)
+slogan = tk.Button(frame,
+                   text="Create a Character",
+                   command=character_creator)
+slogan.pack(side=tk.LEFT)
+
+root.mainloop()

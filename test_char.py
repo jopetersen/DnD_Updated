@@ -2,6 +2,10 @@ import random
 
 #creating a new player character
 class player_character:
+    # def __init__ (self):
+
+
+
     available_races = ("dwarf", "dragonborn", "elf", "gnome", "half-elf", "halfling", "half-orc", "human", "tiefling")
 
     # The constructor method is used to initialize data.
